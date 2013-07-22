@@ -1,0 +1,9 @@
+#lastfm-profile{list-style:none;margin:20px 0 30px;width:100%;}#lastfm-profile>li:first-child{background-color:#d51007;background-image:url(../img/Last.fm_Logo_White_Small.png),linear-gradient(to bottom, #d51007, #d20f02);background-repeat:no-repeat;background-position:10px 5px;border-bottom:1px solid #a70b06;border-top:1px solid #c83836;border-radius:3px 3px 2px 2px;height:30px;}
+.lastfm-profile-section{border:1px solid #c83836;border-radius:2px;}.lastfm-profile-section>h2{background-color:#b60300;background-image:linear-gradient(to bottom, #b60300, #bc2826);border-bottom:1px solid #a70b06;border-top:1px solid #c83836;border-radius:2px;color:#f3f3f3;padding:2px 0 3px 10px;}
+.lastfm-profile-section-list{margin:0 10px;}.lastfm-profile-section-list li{border-bottom:1px solid #c83836;margin:4px 0;padding:0 0 4px;}
+.lastfm-profile-section-list li:last-child{border:none;}
+.lastfm-profile-section-list a{color:#333333;text-decoration:none;}
+.lastfm-profile-section-list a:hover h4{color:#a70b06;text-decoration:underline;}
+.lastfm-profile-section-list h4{margin:0 0 3px;}
+.lastfm-profile-section-list img{vertical-align:top;}
+.lastfm-profile-section-list:after{clear:both;}

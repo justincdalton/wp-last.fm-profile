@@ -1,0 +1,82 @@
+/*=============================================
+ * Last.fm Profile styles
+ *=============================================*/
+
+/* Define colors */
+@white: #F3F3F3;
+@grey: #333;
+@greyLight: #C83836;
+@greyDark: #A70B06;
+@red: #D51007;
+@redDark: #D20F02;
+@redDarker: #B60300;
+@redDarkerer: #BC2826;
+
+#lastfm-profile {
+	list-style: none;
+	margin: 20px 0 30px;
+	width: 100%;
+
+	> li:first-child {
+		background-color: @red;
+		background-image: url(../img/Last.fm_Logo_White_Small.png), linear-gradient(to bottom, @red, @redDark);
+		background-repeat: no-repeat;
+		background-position: 10px 5px;
+		border-bottom: 1px solid @greyDark;
+		border-top: 1px solid @greyLight;
+		border-radius: 3px 3px 2px 2px;
+		height: 30px;
+	}
+}
+
+.lastfm-profile-section {
+	border: 1px solid @greyLight;
+	border-radius: 2px;
+
+	> h2 {
+		background-color: @redDarker;
+		background-image: linear-gradient(to bottom, @redDarker, @redDarkerer);
+		border-bottom: 1px solid @greyDark;
+		border-top: 1px solid @greyLight;
+		border-radius: 2px;
+		color: @white;
+		padding: 2px 0 3px 10px;
+	}
+}
+
+.lastfm-profile-section-list {
+	margin: 0 10px;
+
+	li {
+		border-bottom: 1px solid @greyLight;
+		margin: 4px 0;
+		padding: 0 0 4px;
+	}
+
+	li:last-child {
+		border: none;
+	}
+
+	a {
+		color: @grey;
+		text-decoration: none;
+	}
+
+	a:hover h4 {
+		color: @greyDark;
+		text-decoration: underline;
+	}
+
+	h4 {
+		margin: 0 0 3px;
+	}
+
+	img {
+		vertical-align: top;
+	}
+
+}
+
+.lastfm-profile-section-list:after {
+	clear: both;
+}
