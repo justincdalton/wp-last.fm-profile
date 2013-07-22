@@ -21,6 +21,8 @@ $artistDisplayCount = 12;
 
 
 function lastfm_profile_scripts() {
+	wp_register_script('handlebars_js', plugin_dir_url(__FILE__) . 'js/handlebars.js');
+	wp_enqueue_script('handlebars_js');
 	wp_register_script('lastfm_profile_script', plugin_dir_url(__FILE__) . 'js/lastfm-profile.js');
 	wp_enqueue_script('lastfm_profile_script');
 }
@@ -28,7 +30,18 @@ function lastfm_profile_scripts() {
 add_action('wp_enqueue_scripts', 'lastfm_profile_scripts');
 
 function lastfm_profile_display() {
-	$widget = '<div id="lastfm_profile">lastfm test</div>';
-
-	return $widget;
+	?>
+	<script id="lastfm-profile-handlebars" type="text/x-handlebars-template">
+		<ul>
+			{{#each artists}}
+				<li>
+					<img src="{{image.[0].[#text]}}" alt="{{name}}" />
+					<h4>{{name}}</h4>
+				</li>
+			{{/each}}
+		</ul>
+	</script>
+	<div id="lastfm_profile"></div>
+	<?php
 }
+?>
