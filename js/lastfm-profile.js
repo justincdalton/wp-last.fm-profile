@@ -2,10 +2,11 @@
 var lastfmProfile = function() {
 	// Initialize local variables
 	var $,
-		lastfmProfileDiv, 
+		lastfmProfileContent,
+		lastfmProfileArtists, 
 		artistDisplayCount, 
-		handlebarsSource, 
-		handlebarsTemplate, 
+		artistsSource, 
+		artistsTemplate, 
 		handlebarsContext, 
 		handlebarsHtml;
 
@@ -14,12 +15,13 @@ var lastfmProfile = function() {
 	// Init function for lastfmProfile plugin js
 	var init = function(_artistDisplayCount) {
 		// Set local variables
-		lastfmProfileDiv = $('#lastfm_profile');
+		lastfmProfileContent = $('#lastfm-profile');
+		lastfmProfileArtists = $('#lastfm-profile-artists');
 		artistDisplayCount = _artistDisplayCount;
 
 		// Set handlebars variables
-		handlebarsSource = $('#lastfm-profile-artists-handlebars').html();
-		handlebarsTemplate = Handlebars.compile(handlebarsSource);
+		artistsSource = $('#lastfm-profile-artists-handlebars').html();
+		artistsTemplate = Handlebars.compile(artistsSource);
 
 		getTopArtists();
 	}
@@ -30,8 +32,8 @@ var lastfmProfile = function() {
 			url: 'http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=pablious&api_key=0c48e23cbb8d3bc9e2268146c1f520d7&format=json&limit=' + artistDisplayCount
 		}).done(function(data) {
 			handlebarsContext = { data: data };
-			handlebarsHtml = handlebarsTemplate(handlebarsContext);
-			lastfmProfileDiv.append(handlebarsHtml);
+			handlebarsHtml = artistsTemplate(handlebarsContext);
+			lastfmProfileArtists.append(handlebarsHtml);
 		});
 	}
 
@@ -41,5 +43,5 @@ var lastfmProfile = function() {
 }();
 
 jQuery(function() {
-	lastfmProfile.init(12);
+	lastfmProfile.init(6);
 });

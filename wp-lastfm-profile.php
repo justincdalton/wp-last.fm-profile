@@ -21,13 +21,15 @@ $artistDisplayCount = 12;
 
 
 /**
- * Register scripts including Handlebars.js and the plugin script
+ * Register css and scripts including Handlebars.js and the plugin script
  */
 function lastfm_profile_scripts() {
 	wp_register_script('handlebars_js', plugin_dir_url(__FILE__) . 'js/handlebars.js');
 	wp_enqueue_script('handlebars_js');
-	wp_register_script('lastfm_profile_script', plugin_dir_url(__FILE__) . 'js/lastfm-profile.js');
+	wp_register_script('lastfm_profile_script', plugin_dir_url(__FILE__) . 'js/lastfm-profile.js', array('jquery'));
 	wp_enqueue_script('lastfm_profile_script');
+	wp_register_style('lastfm_profile_style', plugin_dir_url(__FILE__) . 'css/lastfm-profile.css');
+	wp_enqueue_style('lastfm_profile_style');
 }
 
 add_action('wp_enqueue_scripts', 'lastfm_profile_scripts');
@@ -39,21 +41,29 @@ add_action('wp_enqueue_scripts', 'lastfm_profile_scripts');
  */
 function lastfm_profile_display() {
 	?>
-	<script id="lastfm-profile-handlebars" type="text/x-handlebars-template">
+	<script id="lastfm-profile-artists-handlebars" type="text/x-handlebars-template">
 		{{#if data.error}}
 			<h4>An error has occurred retrieving Last.fm data</h4>
 		{{else}}
-			<ul>
+			<ul class="lastfm-profile-section-list">
 				{{#each data.topartists.artist}}
 					<li>
-						<img src="{{image.[0].[#text]}}" alt="{{name}}" />
-						<h4>{{name}}</h4>
+						<a href="{{url}}">
+							<h4>{{[@attr].rank}}. {{name}}</h4>
+							<img src="{{image.[0].[#text]}}" alt="{{name}}" />
+							Plays: {{playcount}}
+						</a>
 					</li>
 				{{/each}}
 			</ul>
 		{{/if}}
 	</script>
-	<div id="lastfm_profile"></div>
+	<ul id="lastfm-profile">
+		<li id="lastfm-profile-header"></li>
+		<li id="lastfm-profile-artists" class="lastfm-profile-section">
+			<h2>My Top Artists</h2>
+		</li>
+	</ul>
 	<?php
 }
 ?>
