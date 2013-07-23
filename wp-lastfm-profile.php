@@ -30,7 +30,7 @@ function lastfm_profile_scripts() {
 
 	/* Get plugin settings and pass them to js */
 	$username = get_option('lastfm_profile_username');
-	$artistDisplayCount = 6;
+	$artistDisplayCount = (get_option('lastfm_profile_artist_display_count') == '') ? 6 : get_option('lastfm_profile_artist_display_count');
 	$settingsArray = array('username' => $username, 'artistDisplayCount' => $artistDisplayCount);
 	wp_localize_script('lastfm_profile_script', 'settings', $settingsArray);
 }

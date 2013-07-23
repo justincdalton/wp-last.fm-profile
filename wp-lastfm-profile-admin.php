@@ -22,7 +22,7 @@ function lastfm_profile_settings_init() {
 	add_settings_section('lastfm_profile_main', 'Last.fm Profile Main Settings', 'lastfm_profile_main_settings', 'Last.fm-Profile');
 
 	add_settings_field('lastfm_profile_username', 'Last.fm Username', 'lastfm_profile_username_field', 'Last.fm-Profile', 'lastfm_profile_main');
-
+	add_settings_field('lastfm_profile_artist_display_count', 'Artist Display Count', 'lastfm_profile_artist_display_count_field', 'Last.fm-Profile', 'lastfm_profile_main');
 }
 
 /**
@@ -53,6 +53,10 @@ function lastfm_profile_main_settings() {}
 
 function lastfm_profile_username_field() {
 echo "<input id='lastfm_profile_username' name='lastfm_profile_username' type='text' value='".get_option('lastfm_profile_username')."' />";
+}
+
+function lastfm_profile_artist_display_count_field() {
+echo "<input id='lastfm_profile_artist_display_count' name='lastfm_profile_artist_display_count' type='text' value='".((get_option('lastfm_profile_artist_display_count') == '') ? 6 : get_option('lastfm_profile_artist_display_count'))."' />";
 }
 
 ?>
