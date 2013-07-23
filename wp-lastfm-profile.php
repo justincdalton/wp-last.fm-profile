@@ -10,14 +10,11 @@ License: MIT
 */
 
 /**
- * Set the number of artists to display
- */
-$artistDisplayCount = 12;
-
-/**
  * Include Last.fm Profile Widget admin settings
  */
-//include('wp-lastfm-profile-admin.php');
+if (is_admin()) {
+	include('wp-lastfm-profile-admin.php');
+}
 
 
 /**
@@ -30,6 +27,12 @@ function lastfm_profile_scripts() {
 	wp_enqueue_script('lastfm_profile_script');
 	wp_register_style('lastfm_profile_style', plugin_dir_url(__FILE__) . 'css/lastfm-profile.css');
 	wp_enqueue_style('lastfm_profile_style');
+
+	/* Get plugin settings and pass them to js */
+	$username = get_option('lastfm_profile_username');
+	$artistDisplayCount = 6;
+	$settingsArray = array('username' => $username, 'artistDisplayCount' => $artistDisplayCount);
+	wp_localize_script('lastfm_profile_script', 'settings', $settingsArray);
 }
 
 add_action('wp_enqueue_scripts', 'lastfm_profile_scripts');
